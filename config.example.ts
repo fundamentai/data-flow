@@ -8,6 +8,7 @@ type configType = {
     MODULE_KEY: string
     SESSION_SECRET: string
     ENV: string
+    BOT_TOKEN: string
 }
 
 const configSchema = Joi.object({
@@ -16,17 +17,19 @@ const configSchema = Joi.object({
     MODULE_NAME: Joi.string().required(),
     MODULE_KEY: Joi.string().required(),
     SESSION_SECRET: Joi.string().required(),
-    ENV: Joi.string().valid('development', 'production').required()
+    ENV: Joi.string().valid('development', 'production').required(),
+    BOT_TOKEN: Joi.string().required()
 })
 
 export const config: configType = validate(
     {
         PORT: 8000,
-        MONGO_CONNECTION: 'mongodb://127.0.0.1:27017/template-ms',
+        MONGO_CONNECTION: 'mongodb://127.0.0.1:27017/fundementai',
         MODULE_KEY: '123',
-        MODULE_NAME: 'template-ms',
+        MODULE_NAME: 'fundementai',
         SESSION_SECRET: '123',
-        ENV: 'development'
+        ENV: 'development',
+        BOT_TOKEN: '123'
     },
     configSchema
 )
