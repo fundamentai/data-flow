@@ -9,6 +9,7 @@ type configType = {
     SESSION_SECRET: string
     ENV: string
     BOT_TOKEN: string
+    GPT_CONNECTOR: string
 }
 
 const configSchema = Joi.object({
@@ -18,7 +19,8 @@ const configSchema = Joi.object({
     MODULE_KEY: Joi.string().required(),
     SESSION_SECRET: Joi.string().required(),
     ENV: Joi.string().valid('development', 'production').required(),
-    BOT_TOKEN: Joi.string().required()
+    BOT_TOKEN: Joi.string().required(),
+    GPT_CONNECTOR: Joi.string().required()
 })
 
 export const config: configType = validate(
@@ -29,7 +31,8 @@ export const config: configType = validate(
         MODULE_NAME: 'fundementai',
         SESSION_SECRET: '123',
         ENV: 'development',
-        BOT_TOKEN: '123'
+        BOT_TOKEN: '123',
+        GPT_CONNECTOR: 'http://localhost:8001'
     },
     configSchema
 )
