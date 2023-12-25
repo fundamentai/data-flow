@@ -1,5 +1,5 @@
 import { getLastArticleId, getArticle } from './tradingview'
-getArticle
+
 export async function connect(onNewArticle: (article: string) => any) {
     let lastArticleId = null
     while (true) {

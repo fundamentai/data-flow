@@ -38,7 +38,6 @@ export async function getArticles() {
             category: 'base',
             lang: 'en',
             client: 'overview'
-            // streaming: true
         }
     })
 
