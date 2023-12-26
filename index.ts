@@ -1,4 +1,4 @@
-import { connection } from './database'
-import { app } from './api'
+import { ChannelLogic } from './logic/models/telegram/channel'
+import { connect } from './logic/integrations/resource'
 
-export { connection, app }
+connect(ChannelLogic.sendTelegram)
