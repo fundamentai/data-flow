@@ -16,7 +16,7 @@ export class ChannelLogic {
 
         let title = `*${params.title}*`
         let analysis = `*AI Fundemental Analysis*\n${analyze['fundamental-analysis']}`
-        let score = `*Score*: ${(analyze.score > 0 ? '🟩' : '🟥').repeat(analyze.score)}`
+        let score = `*Score*: ${(analyze.score > 0 ? '🟩' : '🟥').repeat(Math.abs(analyze.score))}`
         let link = `*Source*: ${params.link}`
 
         let message = `${title}\n\n${analysis}\n\n${score}\n\n${link}`
