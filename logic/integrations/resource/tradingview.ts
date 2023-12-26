@@ -28,8 +28,8 @@ export async function getArticle(id: string) {
         }
     })
     const json = response.data
-    const articles = jsonToArticle(json.astDescription)
-    return articles
+    const article = jsonToArticle(json.astDescription)
+    return article
 }
 
 export async function getArticles() {
@@ -41,12 +41,16 @@ export async function getArticles() {
         }
     })
 
-    return response.data.items.map((item: any) => item.id)
+    return response.data.items.map((item: any) => {
+        return {
+            id: item.id,
+            title: item.title,
+            link: `https://www.tradingview.com${item.storyPath}`
+        }
+    })
 }
 
 export async function getLastArticleId() {
     const articles = await getArticles()
     return articles[0]
 }
-
-getLastArticleId().then(console.log)
