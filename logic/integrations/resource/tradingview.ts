@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import { article } from '../../types/telegram/common'
+
 const tradingview = axios.create({
     baseURL: 'https://news-headlines.tradingview.com/v2/'
 })
@@ -20,19 +22,18 @@ function jsonToArticle(json: any): string {
     return texts.join('\n')
 }
 
-export async function getArticle(id: string) {
+export async function getArticle(id: string): Promise<string> {
     const response = await tradingview.get(`/story`, {
         params: {
             id,
             lang: 'en'
         }
     })
-    const json = response.data
-    const article = jsonToArticle(json.astDescription)
-    return article
+
+    return jsonToArticle(response.data.astDescription)
 }
 
-export async function getArticles() {
+export async function getArticles(): Promise<article[]> {
     const response = await tradingview.get(`/headlines`, {
         params: {
             category: 'base',
@@ -50,7 +51,7 @@ export async function getArticles() {
     })
 }
 
-export async function getLastArticleId() {
+export async function getLastArticle(): Promise<article> {
     const articles = await getArticles()
     return articles[0]
 }
